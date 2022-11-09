@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useListContext } from './../../context/list.context'
 
@@ -16,14 +16,9 @@ const Container = styled.div`
 `
 
 const NameRewitteable = ({ id }) => {
-
   const { list, setList } = useListContext()
-  //const [text, setText] = useState(list.find(item => item.id === id ).title)
-
   const text = list.find(item => item.id === id ).title
-
   const handleChange = (e) => {
-
     const itemIndex = list.findIndex(item => item.id === id )
     const newList = [...list]
     newList[itemIndex].title = e.target.value

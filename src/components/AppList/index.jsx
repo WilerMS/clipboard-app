@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import wallpaper from './../../static/wallpaper_1.jpg'
 
 export const AppContainer = styled.div`
   display: flex;

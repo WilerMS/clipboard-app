@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import List from "./constants/data";
+import React from "react";
 import { ListContainer, ListItem, AppContainer } from "./components/AppList"
 import { DragHandle } from "./components/DragHandle"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"

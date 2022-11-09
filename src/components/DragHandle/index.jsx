@@ -1,4 +1,3 @@
-import { ReactComponent as DragHandleIcon } from "./icon.svg";
 import React from "react";
 import styled from 'styled-components'
 import { FiMenu } from 'react-icons/fi'

@@ -1,6 +1,6 @@
 {
   "name": "clipboard",
-  "homepage":"https://wilerms.github.io/clipboard-app",
+  "homepage": "https://wilerms.github.io/clipboard-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "react-icons": "^4.6.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
