@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/clipboard-app/static/css/main.a240c550.css",
+    "main.js": "/clipboard-app/static/js/main.3e4bd140.js",
+    "static/media/wallpaper_1.jpg": "/clipboard-app/static/media/wallpaper_1.d9807e6a516e10c63675.jpg",
+    "static/media/icon.svg": "/clipboard-app/static/media/icon.5cc298bdc5569baa23804e2131076e6f.svg",
+    "index.html": "/clipboard-app/index.html",
+    "main.a240c550.css.map": "/clipboard-app/static/css/main.a240c550.css.map",
+    "main.3e4bd140.js.map": "/clipboard-app/static/js/main.3e4bd140.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a240c550.css",
+    "static/js/main.3e4bd140.js"
+  ]
+}
