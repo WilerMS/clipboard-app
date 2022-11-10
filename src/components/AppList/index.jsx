@@ -50,6 +50,7 @@ export const ListItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 8fr 1fr 1fr;
   align-items: center;
+  background: white;
   color: #444444;
   padding: 0.8rem 0.3rem;
   border-bottom: 1px solid #dddddd;
