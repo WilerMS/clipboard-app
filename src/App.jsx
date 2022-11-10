@@ -34,7 +34,7 @@ const App = () => {
                   {(provided, _) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
                       {list
-                        .filter((item) => item.title.includes(textSearched) || item.title === '')
+                        .filter((item) => item.title.toLowerCase().includes(textSearched.toLowerCase()) || item.title === '')
                         .map((item, i) => (
                           <Draggable
                             key={item.id}
