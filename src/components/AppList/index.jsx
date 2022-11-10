@@ -19,25 +19,42 @@ export const ListContainer = styled.div`
   background: white;
 
   .task-list {
-    max-height: 350px;
+    height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0 1rem;
+
+    > div {
+      width: 100%;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #00000043;
+      border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00000092;
+    }
   }
 `;
 
 export const ListItem = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 8fr 1fr 1fr;
   align-items: center;
   color: #444444;
   padding: 0.8rem 0.3rem;
   border-bottom: 1px solid #dddddd;
-  background: white;
    &:last-child {
     border-bottom: none;
-  }
-  span {
   }
   svg {
     width: 20px;

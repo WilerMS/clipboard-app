@@ -2,6 +2,12 @@ import React from 'react'
 import { useListContext } from './../../context/list.context'
 import { FiTrash } from 'react-icons/fi'
 import swal from 'sweetalert'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  display: flex;
+  justify-content: end;
+`
 
 const Deleter = ({ id }) => {
 
@@ -38,9 +44,9 @@ const Deleter = ({ id }) => {
   }
 
   return (
-    <div onClick={handleClick}>
+    <Container onClick={handleClick}>
       <FiTrash />
-    </div>
+    </Container>
   )
 }
 

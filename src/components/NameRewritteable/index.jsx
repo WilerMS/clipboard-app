@@ -10,7 +10,7 @@ const Container = styled.div`
   input {
     outline: none;
     border: none;
-    width: 95%;
+    width: 100%;
     font-size: 16px;
   }
 `

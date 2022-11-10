@@ -1,5 +1,11 @@
 import React from 'react'
 import { FiCopy } from 'react-icons/fi'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  display: flex;
+  justify-content: end;
+`
 
 const Coppier = ({ item }) => {
 
@@ -9,9 +15,9 @@ const Coppier = ({ item }) => {
 
   return (
     <>
-      <div onClick={handleClick}>
+      <Container onClick={handleClick}>
         <FiCopy />
-      </div>
+      </Container>
     </>
   )
 }
