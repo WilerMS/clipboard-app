@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/clipboard-app/static/css/main.58893425.css",
-    "main.js": "/clipboard-app/static/js/main.fd26420d.js",
+    "main.js": "/clipboard-app/static/js/main.323db20f.js",
     "index.html": "/clipboard-app/index.html",
     "main.58893425.css.map": "/clipboard-app/static/css/main.58893425.css.map",
-    "main.fd26420d.js.map": "/clipboard-app/static/js/main.fd26420d.js.map"
+    "main.323db20f.js.map": "/clipboard-app/static/js/main.323db20f.js.map"
   },
   "entrypoints": [
     "static/css/main.58893425.css",
-    "static/js/main.fd26420d.js"
+    "static/js/main.323db20f.js"
   ]
 }
