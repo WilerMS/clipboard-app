@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ListContainer, AppContainer } from "./components/AppList"
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import { ListContainer, AppContainer } from './components/AppList'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { useListContext } from './context/list.context'
 import Search from './components/Search'
 import EditMode from "./components/EditMode"
@@ -20,7 +20,7 @@ const App = () => {
     setList,
   } = useListContext()
 
-  const handleEditing = () => !loading && setEditing(true)
+  const handleEditing = () => !error & !loading && setEditing(true)
   const handleConfirm = () => {
     //TODO: Error Handling
     setOriginalList(list.map(a => ({...a})))
@@ -35,7 +35,8 @@ const App = () => {
   useEffect(() => {
     const fetchListData = async () => {
       const response = await fetchData('http://localhost:5000/templates')
-      setList(response)
+      setList(response ? response : [])
+      setOriginalList(response ? response : [])
     }
     fetchListData()
   }, [])
@@ -57,6 +58,7 @@ const App = () => {
             textSearched={textSearched}
             list={list}
             editing={editing}
+            error={error}
             loading={loading}
           />
           <div className='register'>

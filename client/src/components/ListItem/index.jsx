@@ -8,7 +8,7 @@ import NameRewitteable from '../NameRewritteable';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: ${props => props.editing ? '1fr 10fr 1fr' : '11fr 1fr'};
+  grid-template-columns: ${props => props.editing ? '1fr 10fr 1fr' : '1fr 10fr 1fr'};
   align-items: center;
   background: white;
   color: #444444;
@@ -43,7 +43,7 @@ const ListItem = ({ provided, snapshot, item, editing }) => {
       }}
       editing={editing}
     >
-      {editing &&<DragHandle {...provided.dragHandleProps} />}
+      <DragHandle {...provided.dragHandleProps} />
       <NameRewitteable editing={editing} id={item.id} />
       {!editing && <Coppier item={item} />}
       {editing && <Deleter id={item.id} />}
