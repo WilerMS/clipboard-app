@@ -7,10 +7,11 @@ const ListContext = createContext()
 export const ContextListProvider = ({ children }) => {
 
   const [list, setList] = useLocalStorage('list', initialList)
+  const [originalList, setOriginalList] = useLocalStorage('original-list', initialList)
 
   return (
     <ListContext.Provider
-      value={{ list, setList }}
+      value={{ list, setList, originalList, setOriginalList }}
     >
       {children}
     </ListContext.Provider>

@@ -3,24 +3,22 @@ import { FiSearch, FiX } from 'react-icons/fi'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  width: calc(100% - 2rem);
-  margin-bottom: .7rem;
-  padding: 0 1rem;
+  width: 100%;
   display: flex;
-  margin-top: .6rem;
 
   .search {
     width: 100%;
+    height: 70px;
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
-    border: 1px solid #0000006f;
-    border-radius: 15px;
+    border-bottom: 1px solid #0000002f;
   }
 
   input {
     padding: 10px 0;
     font-size: 1.2rem;
+    height: 100%;
     background: none;
     border: 0;
     outline: none;
