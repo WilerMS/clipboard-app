@@ -1,9 +1,15 @@
 import React from 'react'
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import ListItem from '../ListItem'
-import NoItemsFound from '../NoItemsFound'
+import ErrorMessage from '../ErrorMessage'
 
-const List = ({list, textSearched, editing }) => {
+const List = ({list, textSearched, editing, loading }) => {
+
+  if (loading) {
+    return <div className="task-list">
+      <ErrorMessage text='Loading...'/>
+    </div>
+  }
   return (
     <div className="task-list">
       {list.length > 0
@@ -32,7 +38,7 @@ const List = ({list, textSearched, editing }) => {
             </div>
           )}
         </Droppable>
-        : <NoItemsFound />
+        : <ErrorMessage text='No templates founds'/>
       }
     </div>
   )

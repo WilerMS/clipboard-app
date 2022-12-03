@@ -1,13 +1,11 @@
-import React, { createContext, useContext } from 'react'
-import useLocalStorage from './../hooks/useLocalStorage'
-import { initialList } from './../constants/initialList'
+import React, { createContext, useContext, useState } from 'react'
 
 const ListContext = createContext()
 
 export const ContextListProvider = ({ children }) => {
 
-  const [list, setList] = useLocalStorage('list', initialList)
-  const [originalList, setOriginalList] = useLocalStorage('original-list', initialList)
+  const [list, setList] = useState([])
+  const [originalList, setOriginalList] = useState([])
 
   return (
     <ListContext.Provider

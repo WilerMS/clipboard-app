@@ -1,25 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ListContainer, AppContainer } from "./components/AppList"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { useListContext } from './context/list.context'
 import Search from './components/Search'
-import EditMode from "./components/EditMode";
-import List from "./components/List";
-import Register from "./components/Register";
+import EditMode from "./components/EditMode"
+import List from "./components/List"
+import Register from "./components/Register"
+import useFetch from "./hooks/useFetch"
 
 const App = () => {
 
-  const { list, setList } = useListContext()
   const [textSearched, setTextSearched] = useState('')
   const [editing, setEditing] = useState(false)
+  const { error, loading, fetchData } = useFetch()
+  const { 
+    originalList,
+    setOriginalList,
+    list,
+    setList,
+  } = useListContext()
 
-  const handleSaveList = () => {
-
+  const handleEditing = () => !loading && setEditing(true)
+  const handleConfirm = () => {
+    //TODO: Error Handling
+    setOriginalList(list.map(a => ({...a})))
+    setEditing(false)
+  }
+  const handleCancel = () => {
+    setList(originalList.map(a => ({...a})))
+    setEditing(false)
   }
 
-  const handleSave = () => {
-    
-  }
+  // TODO: Check if this is the best way
+  useEffect(() => {
+    const fetchListData = async () => {
+      const response = await fetchData('http://localhost:5000/templates')
+      setList(response)
+    }
+    fetchListData()
+  }, [])
 
   const onDragEnd = (param) => {
     const srcIndex = param.source.index
@@ -38,13 +57,16 @@ const App = () => {
             textSearched={textSearched}
             list={list}
             editing={editing}
+            loading={loading}
           />
           <div className='register'>
             {editing && <Register />}
           </div>
-          <EditMode 
-            setEditing={setEditing}
+          <EditMode
+            setEditing={handleEditing}
             editing={editing}
+            onSave={handleConfirm}
+            onCancel={handleCancel}
           />
         </ListContainer>
       </DragDropContext>

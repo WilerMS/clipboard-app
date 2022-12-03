@@ -43,51 +43,26 @@ const EditMode = ({
   onCancel = () =>  { } 
 }) => {
 
-  const { 
-    originalList,
-    setOriginalList,
-    list,
-    setList, 
-  } = useListContext()
-
-  const handleConfirm = () => {
-    console.log({list, originalList})
-
-    //TODO: Error Handling
-    //onSave()
-    setOriginalList(list.map(a => ({...a})))
-    setEditing(false)
-  }
-
-  const handleCancel = () => {
-    console.log({list, originalList})
-    //onCancel()
-    setList(originalList.map(a => ({...a})))
-    setEditing(false)
-  }
-
-  const handleEditing = () => setEditing(true)
-
   return (
     <Container>
       {
         !editing
           ? <div 
               className='editing' 
-              onClick={handleEditing}
+              onClick={setEditing}
             >
               <FiEdit />
             </div>
           : <>
               <div 
                 className='confirm'
-                onClick={handleConfirm}
+                onClick={onSave}
               >
                 <FiCheck />
               </div>
               <div 
                 className='cancel'
-                onClick={handleCancel}
+                onClick={onCancel}
               >
                 <FiX />
               </div>

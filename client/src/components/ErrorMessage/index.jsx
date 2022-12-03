@@ -10,12 +10,12 @@ const Container = styled.div`
   color: #9191b0;
 `
 
-const NoItemsFound = () => {
+const ErrorMessage = ({text}) => {
   return (
     <Container>
-      <h2>No templates founds</h2>
+      <h2>{text}</h2>
     </Container>
   )
 }
 
-export default NoItemsFound
+export default ErrorMessage
