@@ -84,7 +84,7 @@ export const Dashboard = () => {
   const handleConfirm = () => {
 
     const fetchListData = async () => {
-      const response = await fetchData('http://localhost:5000/templates', {
+      await fetchData('http://localhost:5000/templates', {
         method: 'POST',
         body: JSON.stringify(list)
       })
@@ -144,5 +144,3 @@ export const Dashboard = () => {
     </DragDropContext>
   )
 }
-
-export default List
