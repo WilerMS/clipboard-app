@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
     const query = `SELECT username, password FROM users WHERE username=?`
     const [result] = await pool.query(query, [username])
     if (!result.length) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: 'Username or password incorret',
       })
     }
@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
     })()
 
     if (!isPasswordCorrect) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: 'Username or password incorret',
       })
     }

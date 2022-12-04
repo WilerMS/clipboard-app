@@ -19,6 +19,7 @@ const useFetch = () => {
       setLoading(false)
       return json
     } catch (err) {
+      console.log({err})
       setError(err)
       setLoading(false)
     }

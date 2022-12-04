@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FiUser, FiLock } from 'react-icons/fi'
 import { AppContainer } from '../AppList'
@@ -105,7 +105,7 @@ const Button = styled.button`
   font-size: 1.2rem;
 `
 
-const Register = ({ setIsLogginIn, register }) => {
+const Register = ({ setIsLogginIn, register = () => {} }) => {
   return (
     <AppContainer className="App">
       <Container>
@@ -135,15 +135,28 @@ const Register = ({ setIsLogginIn, register }) => {
   )
 }
 
-const Login = ({ setIsLogginIn, login = () => {} }) => {
+const Login = ({ setIsLogginIn }) => {
 
   const [userData, setUserData] = useState({})
+  const { error, loading, fetchData } = useFetch()
+  const { setLoggedIn } = useAuthContext()
 
   const handleChange = (e) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value
     })
+  }
+
+  const login = async (username, password) => {
+      const data = await fetchData('http://localhost:5000/login', {
+        method: 'POST',
+        body: JSON.stringify({username, password}),
+      })
+      if (data.token) {
+        localStorage.setItem('token', data.token)
+        setLoggedIn(true)
+      }
   }
 
   return (
@@ -160,6 +173,7 @@ const Login = ({ setIsLogginIn, login = () => {} }) => {
             <input onChange={handleChange} name='password' type="password" placeholder='*****' />
           </Field>
           <div className="error">
+            {error ? error : ''}
           </div>
           <Button onClick={() => login(userData.user, userData.password)}>Log in</Button>
           <div className='signup'>
@@ -175,37 +189,23 @@ const Login = ({ setIsLogginIn, login = () => {} }) => {
 const Authentication = () => {
 
   const [isLogginIn, setIsLogginIn] = useState(true)
-  const { error, loading, fetchData } = useFetch()
-  const { setLoggedIn } = useAuthContext()
+  /* const { error, loading, fetchData } = useFetch()
+  const { setLoggedIn } = useAuthContext() */
 
 
   const register = async (username, password) => {
-    const data = await fetchData('http://localhost:5000/register', {
+    /* const data = await fetchData('http://localhost:5000/register', {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-  }
-
-  const login = async (username, password) => {
-    const data = await fetchData('http://localhost:5000/login', {
-      method: 'POST',
-      body: JSON.stringify({username, password}),
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-
-    localStorage.setItem('token', data.token)
-    setLoggedIn(true)
+    }) */
   }
 
   return (
     isLogginIn
-      ? <Login login={login} setIsLogginIn={setIsLogginIn} />
+      ? <Login setIsLogginIn={setIsLogginIn} />
       : <Register register={register} setIsLogginIn={setIsLogginIn} />
   )
 

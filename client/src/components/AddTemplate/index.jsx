@@ -34,7 +34,8 @@ const Register = () => {
       ...list,
       {
         id: higherID + 1,
-        title: ''
+        title: '',
+        position: list.length + 1
       }
     ])
   }

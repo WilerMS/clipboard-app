@@ -78,8 +78,19 @@ export const Dashboard = () => {
     setList,
   } = useListContext()
 
+  console.log({list})
+
   const handleEditing = () => !error & !loading && setEditing(true)
   const handleConfirm = () => {
+
+    const fetchListData = async () => {
+      const response = await fetchData('http://localhost:5000/templates', {
+        method: 'POST',
+        body: JSON.stringify(list)
+      })
+    }
+    fetchListData()
+
     //TODO: Error Handling
     setOriginalList(list.map(a => ({ ...a })))
     setEditing(false)
@@ -92,8 +103,7 @@ export const Dashboard = () => {
   // TODO: Check if this is the best way
   useEffect(() => {
     const fetchListData = async () => {
-      const response = await fetchData('http://localhost:5000/templates', {
-      })
+      const response = await fetchData('http://localhost:5000/templates', {})
       setList(response ? response : [])
       setOriginalList(response ? response : [])
     }
@@ -105,6 +115,7 @@ export const Dashboard = () => {
     const desIndex = param.destination?.index
     let newList = list.filter(item => item.id !== list[srcIndex].id)
     newList.splice(desIndex, 0, list[srcIndex])
+    newList = newList.map((item, index )=> ({...item, position: index + 1}))
     setList(newList)
   }
 
