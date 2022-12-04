@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FiPlus } from 'react-icons/fi'
-import { useListContext } from './../../context/list.context'
+import { useListContext } from '../../context/list.context'
 
 const Container = styled.div`
   width: 100%;

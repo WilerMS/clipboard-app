@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FiEdit, FiCheck, FiX } from 'react-icons/fi'
-import { useListContext } from '../../context/list.context'
 
 const Container = styled.div`
   display: flex;

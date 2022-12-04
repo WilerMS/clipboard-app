@@ -7,7 +7,14 @@ const useFetch = () => {
   const fetchData = async (url, options) => {
     try {
       setLoading(true)
-      const res = await fetch(url, options)
+      const res = await fetch(url, {
+        ...options,
+        headers: {
+          ...options?.headers,
+          'Content-Type': 'application/json',
+          'Auth': localStorage.getItem('token'),
+        },
+      })
       const json = await res.json()
       setLoading(false)
       return json
