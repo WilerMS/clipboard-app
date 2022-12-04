@@ -35,7 +35,8 @@ router.post('/login', async (req, res) => {
 
     const token = jsonwebtoken.sign({ user: result[0].username }, JWT_SECRET)
     return res.cookie('session',token).json({
-      message: 'Login successfully'
+      message: 'Login successfully',
+      token
     })
   } catch (error) {
     console.log(error)
