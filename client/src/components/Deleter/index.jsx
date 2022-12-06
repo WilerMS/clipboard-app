@@ -40,7 +40,6 @@ const Deleter = ({ id }) => {
       dangerMode: true,
     })
     .then((isOk) => isOk && setList(newList))
-
   }
 
   return (

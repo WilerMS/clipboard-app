@@ -14,11 +14,9 @@ const Coppier = ({ item }) => {
   }
 
   return (
-    <>
-      <Container onClick={handleClick}>
-        <FiCopy />
-      </Container>
-    </>
+    <Container onClick={handleClick}>
+      <FiCopy />
+    </Container>
   )
 }
 
