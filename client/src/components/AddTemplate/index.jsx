@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FiPlus } from 'react-icons/fi'
+import {CiCirclePlus} from 'react-icons/ci'
 import { useListContext } from '../../context/list.context'
 
 const Container = styled.div`
@@ -11,19 +11,23 @@ const Container = styled.div`
 
 const Button = styled.button`
   cursor: pointer;
-  color: white;
-  background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
-  padding: 10px;
-  width: 100px;
-  border: 0;
+  color: black;
+  background: none;
+  border: none;
   border-radius: 2px;
-  font-size: 20px;
+  font-size: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color .2s ease;
+  margin-top: 10px;
+
+  &:hover {
+    color:  #a7a6cb;
+  }
 `
 
-const Register = () => {
+const Register = (props) => {
 
   const { list, setList } = useListContext()
 
@@ -42,8 +46,8 @@ const Register = () => {
 
   return (
     <Container>
-      <Button onClick={handleClick}>
-        <FiPlus />
+      <Button {...props} onClick={handleClick}>
+        <CiCirclePlus />
       </Button>
     </Container>
   )

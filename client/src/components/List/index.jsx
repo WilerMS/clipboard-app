@@ -129,9 +129,6 @@ export const Dashboard = () => {
           error={error}
           loading={loading}
         />
-        <div className='register'>
-          {editing && <AddTemplate />}
-        </div>
         <EditMode
           setEditing={handleEditing}
           editing={editing}

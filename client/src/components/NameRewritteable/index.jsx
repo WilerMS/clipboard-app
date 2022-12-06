@@ -35,7 +35,13 @@ const NameRewitteable = ({ id, editing }) => {
 
   return (
     <Container>
-      <input type="text" placeholder='write something...' disabled={!editing} value={text} onChange={handleChange}/>
+      <input 
+        type="text"
+        placeholder='write something...' 
+        disabled={!editing} 
+        value={text}
+        onChange={handleChange}
+      />
     </Container>
   )
 }

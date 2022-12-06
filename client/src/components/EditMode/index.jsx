@@ -1,73 +1,98 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FiEdit, FiCheck, FiX } from 'react-icons/fi'
+import AddTemplate from './../AddTemplate'
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  height: 70px;
-  cursor: pointer;
+  flex-direction: column;
   color: white;
   align-items: center;
-  /* background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%); */
-  font-size: 1.5rem;  
+  font-size: 1.5rem;
 
-  div {
+  .principal {
+    height: 70px;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    transition: color .2s ease;
+    margin-top: 20px;
+    cursor: pointer;
+
+    .editing, .confirm, .cancel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transition: color .2s ease;
+    }
+
+    .editing {
+      background-image: linear-gradient(60deg,#29323c 0%,#303841 100%);
+    }
+
+    .confirm {
+      background: #30b636;
+    }
+
+    .cancel {
+      background: #e1413e;
+    }
   }
 
-  .editing {
-    background-image: linear-gradient(60deg,#29323c 0%,#303841 100%);
-  }
+  .register {
+    height: 0;
+    opacity: 0;
+    transition: all .3s ease;
 
-  .confirm {
-    background: #30b636;
+    &.open {
+      height: 50px;
+      opacity: 1;
+    }
   }
-
-  .cancel {
-    background: #e1413e;
-  }
+  
 `
 
-const EditMode = ({ 
+const EditMode = ({
   editing = false, 
   setEditing = () => { }, 
   onSave = () =>  { }, 
   onCancel = () =>  { } 
 }) => {
 
-  return (
+  return (<>
     <Container>
-      {
-        !editing
-          ? <div 
-              className='editing' 
-              onClick={setEditing}
-            >
-              <FiEdit />
-            </div>
-          : <>
-              <div 
-                className='confirm'
-                onClick={onSave}
+      <div className={`register ${editing ? 'open' : ''}`}>
+        <AddTemplate disabled={!editing} />
+      </div>
+      <div className="principal">
+        {
+          !editing
+            ? <div 
+                className='editing' 
+                onClick={setEditing}
               >
-                <FiCheck />
+                <FiEdit />
               </div>
-              <div 
-                className='cancel'
-                onClick={onCancel}
-              >
-                <FiX />
-              </div>
-            </>
-      }
+            : <>
+                <div 
+                  className='confirm'
+                  onClick={onSave}
+                >
+                  <FiCheck />
+                </div>
+                <div 
+                  className='cancel'
+                  onClick={onCancel}
+                >
+                  <FiX />
+                </div>
+              </>
+        }
+      </div>
     </Container>
+    </>
   )
 }
 
