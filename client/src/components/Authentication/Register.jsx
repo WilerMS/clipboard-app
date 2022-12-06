@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { FiLoader } from 'react-icons/fi'
+import { FiLoader, FiLock } from 'react-icons/fi'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
@@ -71,11 +71,15 @@ const Register = ({ setIsLogginIn }) => {
                   name='password1'
                   placeholder='******'
                   onChange={handleChange}
+                  type='password'
+                  Icon={FiLock}
                 />
                 <Input
                   name='password2'
                   placeholder='******'
                   onChange={handleChange}
+                  type='password'
+                  Icon={FiLock}
                   error={!passwordsMatch ? 'Passwords must match' : null}
                 />
                 <div className="error">{error ? error.message : ''}</div>

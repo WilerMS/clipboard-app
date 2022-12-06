@@ -48,6 +48,7 @@ const Login = ({ setIsLogginIn }) => {
           placeholder='******'
           type='password'
           onChange={handleChange}
+          Icon={FiLock}
         />
         <div className="error">
           {error ? error.message : ''}

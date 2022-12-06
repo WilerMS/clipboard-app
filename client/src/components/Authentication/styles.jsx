@@ -94,6 +94,14 @@ export const Field = styled.div`
     left: 5px;
     color: red;
   }
+
+  .eye {
+    background: none;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    cursor: pointer;
+  }
 `
 
 export const Button = styled.button`
