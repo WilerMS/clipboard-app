@@ -16,7 +16,7 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
     cursor: pointer;
 
     .editing, .confirm, .cancel {
@@ -45,6 +45,10 @@ const Container = styled.div`
     height: 0;
     opacity: 0;
     transition: all .3s ease;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.open {
       height: 50px;
