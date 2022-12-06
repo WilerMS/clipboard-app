@@ -3,11 +3,12 @@ import { FiUser, FiLock } from 'react-icons/fi'
 import { useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useAuthContext } from '../../context/auth.context'
+import Input from './Input'
 
 
 const Login = ({ setIsLogginIn }) => {
 
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState({ username: '', password: '' })
   const { error, loading, fetchData } = useFetch()
   const { setLoggedIn } = useAuthContext()
 
@@ -19,12 +20,11 @@ const Login = ({ setIsLogginIn }) => {
   }
 
   const login = async () => {
-
-    const data = await fetchData('http://localhost:5000/login', {
+    const data = await fetchData('/login', {
       method: 'POST',
       body: JSON.stringify({
-        username: userData.username, 
-        password: userData.password, 
+        username: userData.username,
+        password: userData.password,
       }),
     })
 
@@ -38,31 +38,22 @@ const Login = ({ setIsLogginIn }) => {
     <S.Container>
       <div className="login">
         <S.SignIn>TEMPLATES</S.SignIn>
-        <S.Field>
-          <FiUser />
-          <input
-            onChange={handleChange}
-            name='username'
-            type="text"
-            placeholder='username'
-          />
-        </S.Field>
-        <S.Field>
-          <FiLock />
-          <input 
-            onChange={handleChange}
-            name='password'
-            type="password"
-            placeholder='*****'
-          />
-        </S.Field>
+        <Input
+          name='username'
+          placeholder='username'
+          onChange={handleChange}
+        />
+        <Input
+          name='password'
+          placeholder='******'
+          type='password'
+          onChange={handleChange}
+        />
         <div className="error">
           {error ? error.message : ''}
         </div>
-        <S.Button
-          onClick={login}
-        >
-            Log in
+        <S.Button onClick={login} disabled={loading}>
+          Log in
         </S.Button>
         <div className='signup'>
           Don't have an account?

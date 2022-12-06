@@ -1,8 +1,9 @@
 import * as S from './styles'
-import { FiUser, FiLock, FiCheckCircle, FiLoader } from 'react-icons/fi'
+import { FiLoader } from 'react-icons/fi'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
+import Input from './Input'
 
 const SuccessRegistration = ({ children }) => {
   return (
@@ -17,29 +18,27 @@ const Register = ({ setIsLogginIn }) => {
   const [passwordsMatch, setPasswordsMatch] = useState(true)
   const { error, loading, fetchData } = useFetch()
   const [success, setSuccess] = useState(null)
-  const [userData, setUserData] = useState({
+  const [user, setuser] = useState({
     username: '',
     password1: '',
     password2: ''
   })
 
   const handleChange = (e) => {
-    setUserData({
-      ...userData,
+    setuser({
+      ...user,
       [e.target.name]: e.target.value
     })
   }
 
-  useEffect(() => {
-    setPasswordsMatch(userData.password1 === userData.password2)
-  }, [userData.password1, userData.password2])
+  useEffect(() => setPasswordsMatch(user.password1 === user.password2), [user.password1, user.password2])
 
   const register = async () => {
-    const data = await fetchData('http://localhost:5000/register', {
+    const data = await fetchData('/register', {
       method: 'POST',
       body: JSON.stringify({
-        username: userData.username,
-        password: userData.password1
+        username: user.username,
+        password: user.password1
       }),
     })
     setSuccess(data)
@@ -49,9 +48,7 @@ const Register = ({ setIsLogginIn }) => {
     <S.Container>
       <div className="login">
         {loading 
-          ? <SuccessRegistration
-              className='loading'
-            >
+          ? <SuccessRegistration className='loading'>
               <FiLoader className='loader'/>
               <span className='signing'>Signing Up...</span>
             </SuccessRegistration>
@@ -65,20 +62,22 @@ const Register = ({ setIsLogginIn }) => {
               </SuccessRegistration>
             : <>
                 <S.SignIn>TEMPLATES</S.SignIn>
-                <S.Field>
-                  <FiUser />
-                  <input type="text" onChange={handleChange} name='username' placeholder='username' />
-                  <span></span>
-                </S.Field>
-                <S.Field>
-                  <FiLock />
-                  <input type="password" onChange={handleChange} name='password1' placeholder='*****' />
-                </S.Field>
-                <S.Field>
-                  <FiLock />
-                  <input type="password" onChange={handleChange} name='password2' placeholder='*****' />
-                  {!passwordsMatch && <span>Passwords must match</span>}
-                </S.Field>
+                <Input
+                  name='username'
+                  placeholder='username'
+                  onChange={handleChange}
+                />
+                <Input
+                  name='password1'
+                  placeholder='******'
+                  onChange={handleChange}
+                />
+                <Input
+                  name='password2'
+                  placeholder='******'
+                  onChange={handleChange}
+                  error={!passwordsMatch ? 'Passwords must match' : null}
+                />
                 <div className="error">{error ? error.message : ''}</div>
                 <S.Button
                   disabled={!passwordsMatch}
@@ -87,7 +86,7 @@ const Register = ({ setIsLogginIn }) => {
                   Sign Up
                 </S.Button>
                 <div className='signup open'>
-                  <span onClick={() => setIsLogginIn(true)}> Go Back</span>
+                  <span onClick={() => setIsLogginIn(true)}> Go Back to login</span>
                 </div>
               </>
         }

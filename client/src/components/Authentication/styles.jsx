@@ -90,7 +90,7 @@ export const Field = styled.div`
 
   span {
     position: absolute;
-    bottom: -30px;
+    bottom: -25px;
     left: 5px;
     color: red;
   }
@@ -140,8 +140,6 @@ export const ContainerSuccess = styled.div`
   .loader {
     animation: ${loading} infinite 10s linear;
   }
-
-
 
   svg {
     font-size: 10rem;

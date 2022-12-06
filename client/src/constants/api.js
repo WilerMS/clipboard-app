@@ -1,0 +1,1 @@
+export const API_HOST = process.env.API_HOST || 'http://192.168.1.14:5000'

@@ -4,7 +4,7 @@ import { JWT_SECRET } from './../config.js'
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    const session = req.headers.auth
+    const session = req.headers.authorization
     if (!session) return next('Please login to access the data')
     
     const verify = jsonwebtoken.verify(session, JWT_SECRET)

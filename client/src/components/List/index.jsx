@@ -78,13 +78,11 @@ export const Dashboard = () => {
     setList,
   } = useListContext()
 
-  console.log({list})
-
   const handleEditing = () => !error & !loading && setEditing(true)
   const handleConfirm = () => {
 
     const fetchListData = async () => {
-      await fetchData('http://localhost:5000/templates', {
+      await fetchData('/templates', {
         method: 'POST',
         body: JSON.stringify(list)
       })
@@ -103,7 +101,7 @@ export const Dashboard = () => {
   // TODO: Check if this is the best way
   useEffect(() => {
     const fetchListData = async () => {
-      const response = await fetchData('http://localhost:5000/templates', {})
+      const response = await fetchData('/templates', {})
       setList(response ? response : [])
       setOriginalList(response ? response : [])
     }
