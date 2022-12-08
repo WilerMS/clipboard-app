@@ -19,6 +19,11 @@ You can see a demo here: [clipborad by Wiler Mariñez](https://www.youtube.com/w
 
 In this repository we have two javascript projects, one for the web client and another one to deploy an express server which serves an API RESP.
 
+1. First of all, you'll need to have a MySQL database locally or remote.
+> Note: I've used docker to run a mysql container.
+2. Import the database script located in /db/script.sql to initizalize the schema.
+3. Fork or clone this repository
+
 ### Initialize server
 1. Execute the following commands in the root directory to install all dependencies.
 ```bash
