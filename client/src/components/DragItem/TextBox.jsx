@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useListContext } from './../../context/list.context'
+import { useListContext } from '../../context/list.context'
 
 const Container = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ const Container = styled.div`
   }
 `
 
-const NameRewitteable = ({ id, editing }) => {
+const TextBox = ({ id, editing }) => {
   const { list, setList } = useListContext()
   const text = list.find(item => item.id === id ).title
   const handleChange = (e) => {
@@ -46,4 +46,4 @@ const NameRewitteable = ({ id, editing }) => {
   )
 }
 
-export default NameRewitteable
+export default TextBox

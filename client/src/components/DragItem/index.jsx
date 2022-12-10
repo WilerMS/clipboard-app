@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Coppier from '../Coppier';
-import Deleter from '../Deleter';
-import { DragHandle } from '../DragHandle';
-import NameRewitteable from '../NameRewritteable';
+import Copier from './Copier'
+import Deleter from './Deleter'
+import  DragHandle  from './DragHandle'
+import TextBox from './TextBox'
 
 
 const Container = styled.div`
@@ -14,7 +14,9 @@ const Container = styled.div`
   color: #444444;
   padding: 0.8rem 0.3rem;
   border-bottom: 1px solid #dddddd;
-   &:last-child {
+  position: relative;
+  
+  &:last-child {
     border-bottom: none;
   }
   svg {
@@ -44,8 +46,8 @@ const ListItem = ({ provided, snapshot, item, editing }) => {
       editing={editing}
     >
       <DragHandle {...provided.dragHandleProps} />
-      <NameRewitteable editing={editing} id={item.id} />
-      {!editing && <Coppier item={item} />}
+      <TextBox editing={editing} id={item.id} />
+      {!editing && <Copier item={item} />}
       {editing && <Deleter id={item.id} />}
     </Container>
   )

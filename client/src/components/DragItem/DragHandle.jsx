@@ -12,7 +12,7 @@ const DragIconWrapper = styled.div`
   }
 `
 
-export function DragHandle(props) {
+export default function DragHandle(props) {
   return (
     <DragIconWrapper {...props}>
       <FiMenu />

@@ -1,11 +1,14 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { API_HOST } from '../constants/api'
+import { useListContext } from '../context/list.context'
 
-const useFetch = () => {
+const useFetch = (url) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const { setOriginalList, setList, list } = useListContext()
 
-  const fetchData = async (url, options) => {
+  const fetchData = async (options) => {
     try {
       setLoading(true)
       const res = await fetch(`${API_HOST}${url}`, {
@@ -28,7 +31,31 @@ const useFetch = () => {
       setLoading(false)
     }
   }
-  return { error, loading, fetchData }
+
+  const postData = async (options) => {
+    try {
+      await fetchData({
+        method: 'POST', 
+        body: JSON.stringify(list),
+        ...options
+      })
+      setOriginalList(list.map(a => ({ ...a })))
+    } catch (err) {
+      setError(err)
+    }
+  }
+
+  useEffect(() => {
+    const fetchListData = async () => {
+      const response = await fetchData({})
+      setList(response ? response : [])
+      setOriginalList(response ? response : [])
+    }
+    fetchListData()
+  }, [])
+
+
+  return { error, loading, fetchData, postData }
 }
 
 export default useFetch

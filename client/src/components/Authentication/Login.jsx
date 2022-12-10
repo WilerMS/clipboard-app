@@ -1,5 +1,5 @@
 import * as S from './styles'
-import { FiUser, FiLock } from 'react-icons/fi'
+import { FiLock } from 'react-icons/fi'
 import { useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { useAuthContext } from '../../context/auth.context'

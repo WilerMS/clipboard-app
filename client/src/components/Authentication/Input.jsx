@@ -26,7 +26,7 @@ const Input = ({ onChange = () => { }, Icon = FiUser, error, ...props }) => {
             setIsPassword(!isPassword)
           }}
         >
-          {isPassword ? <FiEye /> : <FiEyeOff />}
+          {!isPassword ? <FiEye /> : <FiEyeOff />}
         </button>
       }
       {error && <span>{error}</span>}

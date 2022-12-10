@@ -59,13 +59,13 @@ const Container = styled.div`
 `
 
 const EditMode = ({
-  editing = false, 
-  setEditing = () => { }, 
-  onSave = () =>  { }, 
-  onCancel = () =>  { } 
+  editing = false,
+  setEditing = () => { },
+  onSave = () =>  { },
+  onCancel = () =>  { }
 }) => {
 
-  return (<>
+  return (
     <Container>
       <div className={`register ${editing ? 'open' : ''}`}>
         <AddTemplate disabled={!editing} />
@@ -73,30 +73,20 @@ const EditMode = ({
       <div className="principal">
         {
           !editing
-            ? <div 
-                className='editing' 
-                onClick={setEditing}
-              >
+            ? <div className='editing'  onClick={setEditing}>
                 <FiEdit />
               </div>
             : <>
-                <div 
-                  className='confirm'
-                  onClick={onSave}
-                >
+                <div className='confirm' onClick={onSave}>
                   <FiCheck />
                 </div>
-                <div 
-                  className='cancel'
-                  onClick={onCancel}
-                >
+                <div className='cancel' onClick={onCancel}>
                   <FiX />
                 </div>
               </>
         }
       </div>
     </Container>
-    </>
   )
 }
 
