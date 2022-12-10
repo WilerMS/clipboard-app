@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { API_HOST } from '../constants/api'
 import { useListContext } from '../context/list.context'
 
-const useFetch = (url) => {
+const useFetch = (url, initialFetch = true) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const { setOriginalList, setList, list } = useListContext()
@@ -51,7 +51,7 @@ const useFetch = (url) => {
       setList(response ? response : [])
       setOriginalList(response ? response : [])
     }
-    fetchListData()
+    initialFetch && fetchListData()
   }, [])
 
 

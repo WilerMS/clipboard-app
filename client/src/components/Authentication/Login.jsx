@@ -9,7 +9,7 @@ import Input from './Input'
 const Login = ({ setIsLogginIn }) => {
 
   const [userData, setUserData] = useState({ username: '', password: '' })
-  const { error, loading, fetchData } = useFetch()
+  const { error, loading, fetchData } = useFetch('/login', false)
   const { setLoggedIn } = useAuthContext()
 
   const handleChange = (e) => {
@@ -20,7 +20,7 @@ const Login = ({ setIsLogginIn }) => {
   }
 
   const login = async () => {
-    const data = await fetchData('/login', {
+    const data = await fetchData({
       method: 'POST',
       body: JSON.stringify({
         username: userData.username,

@@ -16,7 +16,7 @@ const SuccessRegistration = ({ children }) => {
 const Register = ({ setIsLogginIn }) => {
 
   const [passwordsMatch, setPasswordsMatch] = useState(true)
-  const { error, loading, fetchData } = useFetch()
+  const { error, loading, fetchData } = useFetch('/register', false)
   const [success, setSuccess] = useState(null)
   const [user, setuser] = useState({
     username: '',
@@ -34,7 +34,7 @@ const Register = ({ setIsLogginIn }) => {
   useEffect(() => setPasswordsMatch(user.password1 === user.password2), [user.password1, user.password2])
 
   const register = async () => {
-    const data = await fetchData('/register', {
+    const data = await fetchData({
       method: 'POST',
       body: JSON.stringify({
         username: user.username,
