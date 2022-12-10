@@ -38,4 +38,8 @@ export const Container = styled.div`
       background: #00000092;
     }
   }
+
+  @media only screen and (max-width: 550px) {
+    height: 100%;
+  }
 `;
