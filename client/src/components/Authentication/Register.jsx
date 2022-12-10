@@ -61,7 +61,7 @@ const Register = ({ setIsLogginIn }) => {
                 </div>
               </SuccessRegistration>
             : <>
-                <S.SignIn>TEMPLATES</S.SignIn>
+                <S.SignIn>CLIPBOARD</S.SignIn>
                 <Input
                   name='username'
                   placeholder='username'

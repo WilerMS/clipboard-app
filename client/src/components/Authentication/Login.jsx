@@ -37,7 +37,7 @@ const Login = ({ setIsLogginIn }) => {
   return (
     <S.Container>
       <div className="login">
-        <S.SignIn>TEMPLATES</S.SignIn>
+        <S.SignIn>CLIPBOARD</S.SignIn>
         <Input
           name='username'
           placeholder='username'
