@@ -17,7 +17,7 @@ const List = ({ list, textSearched, editing, loading, error }) => {
     return <div className="task-list">
       <GeneralMessage
         type='error'
-        text='There is an error. Try it later...'
+        text={error.message}
       />
     </div>
   }
