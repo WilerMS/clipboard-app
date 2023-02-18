@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import { Container } from './Dashboard.styled'
-import Search from './../Search'
-import EditMode from "./../EditMode"
-import { useListContext } from './../../context/list.context'
-import useFetch from '../../hooks/useFetch'
-import DragList from './../DragList'
+import Search from '../Search'
+import EditMode from "../EditMode"
+import { useListContext } from '../../context/list.context'
+import useTemplates from '../../hooks/useTemplates'
+import DragList from '../DragList'
 
-export const Dashboard = () => {
+export const ClipBoard = () => {
 
   const [textSearched, setTextSearched] = useState('')
   const [editing, setEditing] = useState(false)
-  const { error, loading, postData } = useFetch('/templates')
+  const { error, loading, postData } = useTemplates('/templates')
   const { originalList, list, setList } = useListContext()
 
   const handleEditing = () => !error & !loading && setEditing(true)
@@ -25,7 +24,7 @@ export const Dashboard = () => {
   }
 
   return (
-    <Container>
+    <>
       <Search setTextSearched={setTextSearched} />
       <DragList
         textSearched={textSearched}
@@ -40,6 +39,6 @@ export const Dashboard = () => {
         onSave={handleConfirm}
         onCancel={handleCancel}
       />
-    </Container>
+    </>
   )
 }

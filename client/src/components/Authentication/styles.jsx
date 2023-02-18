@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   max-width: 550px;
-  height: 100%;
+  height: 600px;
   border-radius: 0.2rem;
   box-shadow: 0.1rem 0.1rem 0.4rem #0000003b;
   background: white;

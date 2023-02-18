@@ -1,29 +1,58 @@
 import React from 'react'
 import { Droppable, Draggable } from "react-beautiful-dnd"
+import styled from 'styled-components'
 import DragItem from '../DragItem'
 import GeneralMessage from '../GeneralMessage'
 
+const Container = styled.div`
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 2rem 2rem 2rem;
+
+  > div {
+    width: 100%;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #00000043;
+    border-radius: 3px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00000092;
+  }
+`
+
 const List = ({ list, textSearched, editing, loading, error }) => {
   if (loading) {
-    return <div className="task-list">
+    return (
+    <Container className="task-list">
       <GeneralMessage
         type='loading'
         text='Loading...'
       />
-    </div>
+    </Container>)
   }
 
   if (error) {
-    return <div className="task-list">
+    return <Container className="task-list">
       <GeneralMessage
         type='error'
         text={error.message}
       />
-    </div>
+    </Container>
   }
 
   return (
-    <div className="task-list">
+    <Container className="task-list">
       {list?.length > 0
         ? <Droppable droppableId="droppable-1">
           {(provided, _) => (
@@ -53,7 +82,7 @@ const List = ({ list, textSearched, editing, loading, error }) => {
         </Droppable>
         : <GeneralMessage text='No templates found' />
       }
-    </div>
+    </Container>
   )
 }
 
