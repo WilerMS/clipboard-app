@@ -2,8 +2,8 @@ import * as S from './styles'
 import { FiLoader, FiLock } from 'react-icons/fi'
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 import { useEffect, useState } from 'react'
-import useFetch from '../../hooks/useFetch'
 import Input from './Input'
+import useAuthentication from '../../hooks/useAuthentication'
 
 const SuccessRegistration = ({ children }) => {
   return (
@@ -16,7 +16,7 @@ const SuccessRegistration = ({ children }) => {
 const Register = ({ setIsLogginIn }) => {
 
   const [passwordsMatch, setPasswordsMatch] = useState(true)
-  const { error, loading, fetchData } = useFetch('/register', false)
+  const { error, loading, register } = useAuthentication()
   const [success, setSuccess] = useState(null)
   const [user, setuser] = useState({
     username: '',
@@ -33,16 +33,7 @@ const Register = ({ setIsLogginIn }) => {
 
   useEffect(() => setPasswordsMatch(user.password1 === user.password2), [user.password1, user.password2])
 
-  const register = async () => {
-    const data = await fetchData({
-      method: 'POST',
-      body: JSON.stringify({
-        username: user.username,
-        password: user.password1
-      }),
-    })
-    setSuccess(data)
-  }
+  const handleRegister = () => register({ username: user.username, password: user.password1 }, false, () => setSuccess(false))
 
   return (
     <S.Container>
@@ -85,7 +76,7 @@ const Register = ({ setIsLogginIn }) => {
                 <div className="error">{error ? error.message : ''}</div>
                 <S.Button
                   disabled={!passwordsMatch}
-                  onClick={register}
+                  onClick={handleRegister}
                 >
                   Sign Up
                 </S.Button>

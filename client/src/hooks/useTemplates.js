@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { API_HOST } from '../constants/api'
 import { useListContext } from '../context/list.context'
 
-const useFetch = (url, initialFetch = true) => {
+const useTemplates = (url, initialFetch = true) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const { setOriginalList, setList, list } = useListContext()
@@ -58,4 +58,4 @@ const useFetch = (url, initialFetch = true) => {
   return { error, loading, fetchData, postData }
 }
 
-export default useFetch
+export default useTemplates

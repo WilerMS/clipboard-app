@@ -46,12 +46,12 @@ const Logout = () => {
   }
 
   return (
-    loggedIn && 
+    loggedIn &&
       <Container>
         <Button onClick={handleLogout}>
           <FiLogOut />
         </Button>
-    </Container>
+      </Container>
   )
 }
 

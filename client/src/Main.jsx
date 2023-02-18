@@ -1,21 +1,19 @@
 import React from "react"
-import { Dashboard } from "./components/Dashboard"
 import Authentication from './components/Authentication'
 import { useAuthContext } from './context/auth.context'
-import Logout from './components/Authentication/Logout'
 import styled from 'styled-components'
+import { App } from "./App"
 
-const App = () => {
+const Main = () => {
 
   const { loggedIn } = useAuthContext()
   
   return (
     <AppContainer className="App">
       {loggedIn
-        ? <Dashboard />
+        ? <App />
         : <Authentication />
       }
-      <Logout />
     </AppContainer>
   );
 };
@@ -30,4 +28,4 @@ export const AppContainer = styled.div`
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 `
 
-export default App;
+export default Main;
