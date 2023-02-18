@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=wiler
+    ports:
+      - "3307:3306"

@@ -20,4 +20,4 @@ CREATE TABLE users(
 );
 
 
-INSERT INTO users(username, password) VALUES ('user1', 'user1');
+INSERT INTO users(username, password) VALUES ('wmarinez', 'wmarinez');
