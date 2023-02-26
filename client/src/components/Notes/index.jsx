@@ -1,30 +1,74 @@
 import React from 'react'
-import { FiFile, FiPenTool } from 'react-icons/fi'
+import { useState } from 'react'
+import { FiCheck, FiEdit, FiFile, FiPenTool, FiRefreshCcw, FiSave, FiSkipBack, FiX } from 'react-icons/fi'
 import styled from 'styled-components'
-import { Editable } from 'slate-react'
+import { useNotesContext } from '../../context/notes.context'
+import useNotes from '../../hooks/useNotes'
+import Loading from '../Loading'
+import TextEditor from '../TextEditor'
+import GeneralMessage from './../GeneralMessage'
 
 const Container = styled.div`
 
   width: 100%;
   height: 100%;
-  background: red;
   display: flex;
   flex-direction: column;
 
-  textarea {
-    width: 100%;
+`
+
+const SaveNote = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  font-size: 1.5rem;
+  height: 80px;
+
+  .principal {
     height: 100%;
-    resize: none;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    .editing {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transition: color .2s ease;
+      background-image: linear-gradient(60deg,#29323c 0%,#303841 100%);
+    }
   }
+  
 `
 
 export const Notes = () => {
+
+  const { notes, error, loading, postNotes } = useNotes(true)
+
+  const handleSaveNote = () => postNotes()
+
+  if (Boolean(error)) return <GeneralMessage text={error.message} />
+  if (loading || !notes) return <Loading />
+
   return (
     <Container>
-      <textarea></textarea>
+      <TextEditor />
+      <SaveNote onClick={handleSaveNote}>
+        <div className="principal">
+          <div className='editing'>
+            <FiSave />
+          </div>
+        </div>
+      </SaveNote>
     </Container>
   )
 }

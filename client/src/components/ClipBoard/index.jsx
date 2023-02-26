@@ -22,6 +22,17 @@ export const ClipBoard = () => {
     setList(originalList.map(a => ({ ...a })))
     setEditing(false)
   }
+  const handleAddEntry = () => {
+    const higherID = list.reduce((acc, curr) => acc > curr.id ? acc : curr.id, 0)
+    setList([
+      ...list,
+      {
+        id: higherID + 1,
+        title: '',
+        position: list.length + 1
+      }
+    ])
+  }
 
   return (
     <>
@@ -34,6 +45,7 @@ export const ClipBoard = () => {
         loading={loading}
       />
       <EditMode
+        onAdd={handleAddEntry}
         setEditing={handleEditing}
         editing={editing}
         onSave={handleConfirm}

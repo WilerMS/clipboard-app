@@ -3,6 +3,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd"
 import styled from 'styled-components'
 import DragItem from '../DragItem'
 import GeneralMessage from '../GeneralMessage'
+import Loading from '../Loading'
 
 const Container = styled.div`
   height: 100%;
@@ -35,10 +36,7 @@ const List = ({ list, textSearched, editing, loading, error }) => {
   if (loading) {
     return (
     <Container className="task-list">
-      <GeneralMessage
-        type='loading'
-        text='Loading...'
-      />
+      <Loading />
     </Container>)
   }
 

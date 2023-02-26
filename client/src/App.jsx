@@ -4,18 +4,27 @@ import Categories from './components/Categories'
 import { ClipBoard } from './components/ClipBoard'
 import { Notes } from './components/Notes'
 import Panel from './components/Panel'
+import { ContextListProvider } from './context/list.context'
+import { NotesContextProvider } from './context/notes.context'
 import useLocalStorage from './hooks/useLocalStorage'
 
 export const App = () => {
 
   const [appMode, setAppMode] = useLocalStorage('app-mode', 'clipboard')
-  
 
   return (
     <>
       <Panel>
-        {appMode === 'clipboard' && <ClipBoard />}
-        {appMode === 'notes' && <Notes />}
+        {appMode === 'clipboard' && 
+          <ContextListProvider>
+            <ClipBoard />
+          </ContextListProvider>
+        }
+        {appMode === 'notes' &&
+          <NotesContextProvider>
+            <Notes />
+          </NotesContextProvider>
+        }
         {/* {appMode === 'contacts' && <Contacts />} */}
       </Panel>
       <Logout />

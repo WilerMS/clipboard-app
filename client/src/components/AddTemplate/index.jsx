@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import {CiCirclePlus} from 'react-icons/ci'
-import { useListContext } from '../../context/list.context'
 
 const Container = styled.div`
   width: 100%;
@@ -27,26 +26,14 @@ const Button = styled.button`
   }
 `
 
-const Register = (props) => {
-
-  const { list, setList } = useListContext()
-
-  const handleClick = () => {
-
-    const higherID = list.reduce((acc, curr) => acc > curr.id ? acc : curr.id, 0)
-    setList([
-      ...list,
-      {
-        id: higherID + 1,
-        title: '',
-        position: list.length + 1
-      }
-    ])
-  }
+const Register = ({ 
+  onAdd = () => { },
+  ...props
+}) => {
 
   return (
     <Container>
-      <Button {...props} onClick={handleClick}>
+      <Button {...props} onClick={onAdd}>
         <CiCirclePlus />
       </Button>
     </Container>

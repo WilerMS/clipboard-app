@@ -59,17 +59,19 @@ const Container = styled.div`
 `
 
 const EditMode = ({
+  showAdd = true,
   editing = false,
   setEditing = () => { },
+  onAdd = () => { },
   onSave = () =>  { },
   onCancel = () =>  { }
 }) => {
 
   return (
     <Container>
-      <div className={`register ${editing ? 'open' : ''}`}>
-        <AddTemplate disabled={!editing} />
-      </div>
+      {showAdd && <div className={`register ${editing ? 'open' : ''}`}>
+        <AddTemplate onAdd={onAdd} disabled={!editing} />
+      </div>}
       <div className="principal">
         {
           !editing

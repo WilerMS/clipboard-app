@@ -19,5 +19,10 @@ CREATE TABLE users(
   password varchar(1000) NOT NULL
 );
 
-
 INSERT INTO users(username, password) VALUES ('wmarinez', 'wmarinez');
+
+CREATE TABLE notes(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  text LONGTEXT NOT NULL,
+  user int NOT NULL
+);

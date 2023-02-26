@@ -4,6 +4,7 @@ import {
   FiPhone,
   FiCopy,
   FiFile,
+  FiFileText,
 } from 'react-icons/fi'
 
 const Container = styled.div`
@@ -60,7 +61,7 @@ const Categories = ({
         className={`${active === 'notes' ? 'active' : ''}`}
         onClick={() => handleClick('notes')}
       >
-        <FiFile />
+        <FiFileText />
       </div>
     </Container>
   )
