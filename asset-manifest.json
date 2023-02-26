@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/clipboard-app/static/css/main.c04289ad.css",
-    "main.js": "/clipboard-app/static/js/main.cfa8d54f.js",
+    "main.js": "/clipboard-app/static/js/main.197a9e16.js",
     "static/media/list-ol.svg": "/clipboard-app/static/media/list-ol.14fef2e6f0e79b263d06.svg",
     "static/media/chat-square-quote.svg": "/clipboard-app/static/media/chat-square-quote.33be1f551faf7cf853b0.svg",
     "index.html": "/clipboard-app/index.html",
@@ -24,10 +24,10 @@
     "static/media/chevron-down.svg": "/clipboard-app/static/media/chevron-down.8624f04faf16b2d07c00.svg",
     "static/media/type-h1.svg": "/clipboard-app/static/media/type-h1.4c6eb94d40e1ad820dda.svg",
     "main.c04289ad.css.map": "/clipboard-app/static/css/main.c04289ad.css.map",
-    "main.cfa8d54f.js.map": "/clipboard-app/static/js/main.cfa8d54f.js.map"
+    "main.197a9e16.js.map": "/clipboard-app/static/js/main.197a9e16.js.map"
   },
   "entrypoints": [
     "static/css/main.c04289ad.css",
-    "static/js/main.cfa8d54f.js"
+    "static/js/main.197a9e16.js"
   ]
 }
