@@ -27,7 +27,6 @@ export const App = () => {
         }
         {/* {appMode === 'contacts' && <Contacts />} */}
       </Panel>
-      <Logout />
       <Categories
         active={appMode}
         handleClick={setAppMode}

@@ -14,7 +14,7 @@ const Container = styled.div`
   flex-direction: column;
 
   @media only screen and (max-width: 550px) {
-    height: 100%;
+    height: calc(100% - 120px);
   }
 `
 

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { API_HOST } from '../constants/api'
-import { initialNotes } from '../constants/notes'
 import { useNotesContext } from '../context/notes.context'
 
 const useNotes = (initialFetch = true) => {
@@ -46,8 +45,6 @@ const useNotes = (initialFetch = true) => {
   useEffect(() => {
     const fetchListData = async () => {
       const response = await fetchNotes({})
-      
-      console.log({ response })
       setNotes(response)
     }
     initialFetch && fetchListData()

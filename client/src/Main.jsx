@@ -25,7 +25,13 @@ export const AppContainer = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  @media only screen and (max-width: 550px) {
+    align-items: flex-start;
+    
+  }
 `
 
 export default Main;
