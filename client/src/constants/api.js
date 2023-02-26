@@ -1,1 +1,1 @@
-export const API_HOST = process.env.API_HOST /* || 'https://clipboard-app-production.up.railway.app' */ || 'http://localhost:5000'
+export const API_HOST = process.env.API_HOST || 'https://clipboard-app-production.up.railway.app' || 'http://localhost:5000'
