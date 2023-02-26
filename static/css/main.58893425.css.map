@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.58893425.css","mappings":"AAAA,EACI,QAAS,CACT,SACJ,CAMA,gBACI,kBACJ","sources":["index.css"],"sourcesContent":["* {\n    margin: 0;\n    padding: 0;\n}\n\n.delete {\n    background: lightblue;\n}\n\n.cancel {\n    background: lightblue;\n}"],"names":[],"sourceRoot":""}
