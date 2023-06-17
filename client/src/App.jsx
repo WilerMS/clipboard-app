@@ -17,7 +17,7 @@ export const App = () => {
       <Panel>
         {appMode === 'clipboard' && 
           <ContextListProvider>
-            <ClipBoard />
+            <ClipBoard /> 
           </ContextListProvider>
         }
         {appMode === 'notes' &&
