@@ -1,4 +1,4 @@
 import { createPool } from 'mysql2/promise'
-import { db_config } from './../config.js'
+import { dbConfig } from './../config.js'
 
-export const pool = createPool(db_config)
+export const pool = createPool(dbConfig)

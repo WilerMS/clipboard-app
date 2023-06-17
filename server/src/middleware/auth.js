@@ -6,7 +6,7 @@ const isAuthenticated = async (req, res, next) => {
   try {
     const session = req.headers.authorization
     if (!session) return next('Please login to access the data')
-    
+
     const verify = jsonwebtoken.verify(session, JWT_SECRET)
 
     const [result] = await pool.query('SELECT id FROM users WHERE username=?', [verify.user])
