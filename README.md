@@ -36,7 +36,7 @@ DB_USER=<database_user_here>
 DB_PASSWORD=<database_password_here>
 DB_HOST=<database_host_here>
 DB_PORT=<database_port_here>
-DB_NAME=<database_name_here>
+DB_NAME=<database_name_here> 
 PORT=<application_port_here>
 JWT_SECRET=<secret_code_for_jwt_here>
 ```
