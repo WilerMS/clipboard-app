@@ -8,16 +8,21 @@ export const getNotesController = async (req, res) => {
 
 export const postNotesController = async (req, res) => {
   const { body, user } = req
-  const data = body.map(template => ([template.title, template.position, user]))
 
   try {
-    if (data.length > 40) throw new Error('Max template limit exceeded. Max number of templates: 40 ')
+    const [result] = await pool.query('SELECT * FROM notes WHERE user=?', req.user)
 
-    await pool.query('DELETE FROM templates WHERE user=?', [req.user])
-    await pool.query('INSERT INTO templates(title, position, user) VALUES ?', [data])
-    const [result] = await pool.query('SELECT * FROM templates WHERE user=?', req.user)
-    res.json(result)
+    const query = result.length
+      ? 'UPDATE notes SET text=? WHERE user=?'
+      : 'INSERT INTO notes (text, user) values(?, ?)'
+
+    await pool.query(query, [JSON.stringify(body), user])
+
+    return res.json({
+      message: 'Added successfully'
+    })
   } catch (err) {
+    console.log({ err })
     res.json({
       error: true,
       message: err.message
