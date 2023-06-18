@@ -16,12 +16,12 @@ const Container = styled.div`
   justify-content: center;
   gap: 15px;
   width: 100%;
-  overflow-x: auto;
   max-width: 500px;
   padding: 15px 25px;
 
   @media only screen and (max-width: 550px) {
     margin: 0px;
+    padding: 15px 0;
   }
 
   > div {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Search from '../Search'
-import EditMode from "../EditMode"
-import { useListContext } from '../../context/list.context'
-import useTemplates from '../../hooks/useTemplates'
-import DragList from '../DragList'
+import Search from '../components/Search'
+import EditMode from "../components/EditMode"
+import { useListContext } from '../context/list.context'
+import useTemplates from '../hooks/useTemplates'
+import DragList from '../components/DragList'
 
 export const ClipBoard = () => {
 

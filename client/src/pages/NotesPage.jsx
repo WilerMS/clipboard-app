@@ -1,15 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
-import { FiCheck, FiEdit, FiFile, FiPenTool, FiRefreshCcw, FiSave, FiSkipBack, FiX } from 'react-icons/fi'
+import { FiSave } from 'react-icons/fi'
 import styled from 'styled-components'
-import { useNotesContext } from '../../context/notes.context'
-import useNotes from '../../hooks/useNotes'
-import Loading from '../Loading'
-import TextEditor from '../TextEditor'
-import GeneralMessage from './../GeneralMessage'
+import useNotes from '../hooks/useNotes'
+import Loading from '../components/Loading'
+import TextEditor from '../components/TextEditor'
+import GeneralMessage from '../components/GeneralMessage'
 
 const Container = styled.div`
-
   width: 100%;
   height: 100%;
   display: flex;
