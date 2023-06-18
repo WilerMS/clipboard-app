@@ -1,40 +1,10 @@
 import { Router } from 'express'
-import { initialNotes } from './../constants/initialNote.js'
-
-import { pool } from './../db/index.js'
+import { getNotesController, postNotesController } from '../controllers/notes.controller.js'
 import isAuthenticated from './../middleware/auth.js'
 
 const router = Router()
 
-router.get('/notes', isAuthenticated, async (req, res) => {
-  console.log({ user: req.user })
-  const [result] = await pool.query('SELECT * FROM notes WHERE user=?', [req.user])
-  console.log(result)
-  res.json(result[0]?.text ?? initialNotes)
-})
-
-router.post('/notes', isAuthenticated, async (req, res) => {
-  const { body, user } = req
-
-  try {
-    const [result] = await pool.query('SELECT * FROM notes WHERE user=?', req.user)
-
-    const query = result.length
-      ? 'UPDATE notes SET text=? WHERE user=?'
-      : 'INSERT INTO notes (text, user) values(?, ?)'
-
-    await pool.query(query, [JSON.stringify(body), user])
-
-    return res.json({
-      message: 'Added successfully'
-    })
-  } catch (err) {
-    console.log({ err })
-    res.json({
-      error: true,
-      message: err.message
-    })
-  }
-})
+router.get('/notes', isAuthenticated, getNotesController)
+router.post('/notes', isAuthenticated, postNotesController)
 
 export default router
