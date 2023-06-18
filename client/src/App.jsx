@@ -15,6 +15,8 @@ export const App = () => {
   return (
     <>
       <Panel>
+        <div className="panel-container">
+
         {appMode === 'clipboard' && 
           <ContextListProvider>
             <ClipBoard /> 
@@ -26,11 +28,13 @@ export const App = () => {
           </NotesContextProvider>
         }
         {/* {appMode === 'contacts' && <Contacts />} */}
+        </div>
+        <Categories
+          active={appMode}
+          handleClick={setAppMode}
+        />
       </Panel>
-      <Categories
-        active={appMode}
-        handleClick={setAppMode}
-      />
+      
     </>
   )
 }

@@ -11,49 +11,39 @@ import {
 import { useAuthContext } from '../../context/auth.context'
 
 const Container = styled.div`
-  position: absolute;
-  /* right: 0; */
-  bottom: 0;
   display: flex;
   flex-direction: row;
-  margin: 15px;
+  justify-content: center;
+  gap: 15px;
   width: 100%;
   overflow-x: auto;
   max-width: 500px;
-  padding: 25px;
+  padding: 15px 25px;
 
   @media only screen and (max-width: 550px) {
     margin: 0px;
   }
 
-  .items {
-
+  > div {
+    background: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: center;
-    gap: 15px;
+    transition: transform .2s ease;
+    cursor: pointer;
+    font-size: 20px;
 
-    > div {
-      background: white;
-      width: 70px;
-      height: 70px;
-      border-radius: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .2s ease;
-      cursor: pointer;
-      font-size: 20px;
-  
-      &:hover {
-        transform: scale(1.1);
-      }
-  
-      &.active {
-        color: blue;
-      }
-    } 
-  }
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.active {
+      color: blue;
+    }
+  } 
 
 
 `
@@ -72,34 +62,32 @@ const Categories = ({
 
   return (
     <Container>
-      <div className="items">
-        <div
-          className={`${active === 'clipboard' ? 'active' : ''}`}
-          onClick={() => handleClick('clipboard')}
-        >
-          <FiCopy />
-        </div>
-        <div
-          /* className={`${active === 'contacts' ? 'active' : ''}`}
-          onClick={() => handleClick('contacts')} */
-        >
-          <FiClock />
-        </div>
-        <div
-          className={`${active === 'notes' ? 'active' : ''}`}
-          onClick={() => handleClick('notes')}
-        >
-          <FiFileText />
-        </div>
-        <div>
-          <FiClock />
-        </div>
-        <div>
-          <FiClock />
-        </div>
-        <div onClick={() => handleLogout('logout')}>
-          <FiLogOut />
-        </div>
+      <div
+        className={`${active === 'clipboard' ? 'active' : ''}`}
+        onClick={() => handleClick('clipboard')}
+      >
+        <FiCopy />
+      </div>
+      <div
+        /* className={`${active === 'contacts' ? 'active' : ''}`}
+        onClick={() => handleClick('contacts')} */
+      >
+        <FiClock />
+      </div>
+      <div
+        className={`${active === 'notes' ? 'active' : ''}`}
+        onClick={() => handleClick('notes')}
+      >
+        <FiFileText />
+      </div>
+      <div>
+        <FiClock />
+      </div>
+      <div>
+        <FiClock />
+      </div>
+      <div onClick={() => handleLogout('logout')}>
+        <FiLogOut />
       </div>
     </Container>
   )
