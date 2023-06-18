@@ -26,3 +26,11 @@ CREATE TABLE notes(
   text LONGTEXT NOT NULL,
   user int NOT NULL
 );
+
+CREATE TABLE contacts(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  number int NOT NULL,
+  country varchar(20) NOT NULL,
+  user int NOT NULL
+);
