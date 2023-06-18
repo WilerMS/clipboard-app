@@ -72,7 +72,7 @@ const Categories = ({
         /* className={`${active === 'contacts' ? 'active' : ''}`}
         onClick={() => handleClick('contacts')} */
       >
-        <FiClock />
+        <FiPhone />
       </div>
       <div
         className={`${active === 'notes' ? 'active' : ''}`}

@@ -17,6 +17,9 @@ const Container = styled.div`
   .panel-container {
     background: white;
     box-shadow: 0.1rem 0.1rem 0.4rem #0000003b;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
   }
 `
 
