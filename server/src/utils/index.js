@@ -3,3 +3,7 @@ export const errorHandler = fn =>
     const fnReturn = fn(req, res, next, ...args)
     return Promise.resolve(fnReturn).catch(next)
   }
+
+export const lwr = (string) => {
+  return string.toLowerCase()
+}

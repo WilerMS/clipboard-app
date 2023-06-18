@@ -6,6 +6,7 @@ import logger from 'morgan'
 import templatesRouter from './routes/templates.routes.js'
 import userRouter from './routes/user.routes.js'
 import notesRouter from './routes/notes.routes.js'
+import contactsRouter from './routes/contacts.routes.js'
 import { PORT } from './config.js'
 
 const app = express()
@@ -20,6 +21,7 @@ app.use(cookieParser())
 app.use('/', templatesRouter)
 app.use('/', userRouter)
 app.use('/', notesRouter)
+app.use('/', contactsRouter)
 app.get('/', (req, res) => {
   res.send('Welcome')
 })
