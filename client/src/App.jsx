@@ -7,6 +7,7 @@ import Panel from './components/Panel'
 import { ContextListProvider } from './context/list.context'
 import { NotesContextProvider } from './context/notes.context'
 import useLocalStorage from './hooks/useLocalStorage'
+import { ContactsPage } from './pages/ContactsPage'
 
 export const App = () => {
 
@@ -27,7 +28,7 @@ export const App = () => {
             <Notes />
           </NotesContextProvider>
         }
-        {/* {appMode === 'contacts' && <Contacts />} */}
+        {appMode === 'contacts' && <ContactsPage />}
         </div>
         <Categories
           active={appMode}

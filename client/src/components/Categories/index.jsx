@@ -69,8 +69,8 @@ const Categories = ({
         <FiCopy />
       </div>
       <div
-        /* className={`${active === 'contacts' ? 'active' : ''}`}
-        onClick={() => handleClick('contacts')} */
+        className={`${active === 'contacts' ? 'active' : ''}`}
+        onClick={() => handleClick('contacts')}
       >
         <FiPhone />
       </div>

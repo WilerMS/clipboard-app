@@ -4,15 +4,19 @@ import { lwr } from '../utils/index.js'
 export const getContactsController = async (req, res) => {
   const [contacts] = await pool.query('SELECT * FROM contacts WHERE user=?', [req.user])
 
-  const dataToSend = contacts?.reduce((acc, curr) => ({
+  const dataToSend = Object.values(contacts?.reduce((acc, curr) => ({
     ...acc,
-    [curr.country]: [
-      ...(acc[curr.country] ?? []),
-      curr
-    ]
-  }), {})
+    [curr.country]: {
+      ...acc[curr.country],
+      country: curr.country,
+      contacts: [
+        ...(acc[curr.country]?.contacts ?? []),
+        curr
+      ]
+    }
+  }), {}))
 
-  res.json(dataToSend ?? {})
+  res.json(dataToSend ?? [])
 }
 
 export const postContactsController = async (req, res) => {
