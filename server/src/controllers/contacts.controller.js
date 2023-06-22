@@ -16,7 +16,14 @@ export const getContactsController = async (req, res) => {
     }
   }), {}))
 
-  res.json(dataToSend ?? [])
+  const dataToSendWithKeys = dataToSend.map((data) => {
+    return {
+      ...data,
+      keys: [data.country, ...data.contacts.map(i => [i.name, `${i.number}`]).flat()]
+    }
+  })
+
+  res.json(dataToSendWithKeys ?? [])
 }
 
 export const postContactsController = async (req, res) => {

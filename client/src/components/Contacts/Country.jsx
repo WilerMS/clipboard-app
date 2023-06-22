@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { FiChevronDown, FiChevronLeft, FiChevronUp } from 'react-icons/fi'
 
 const Container = styled.div`
   box-shadow: rgba(0, 0, 0, 0.073) 0px 1px 3px, rgba(0, 0, 0, 0.141) 0px 1px 2px;
@@ -18,7 +18,7 @@ const Container = styled.div`
     text-transform: capitalize;
 
     &.open {
-      border-bottom: 1px solid #dddddd;
+      border-bottom: 1px solid #f0f0f0;
     }
   }
 
@@ -33,15 +33,11 @@ const Container = styled.div`
     }
   }
 
-  &.open {
-    padding-bottom: 10px;
-  }
-
 `
 
 export const Country = ({ country, children }) => {
 
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const handleToggleExpand = () => setIsExpanded(!isExpanded)
 
@@ -54,7 +50,7 @@ export const Country = ({ country, children }) => {
         <span>{country}</span>
         {isExpanded 
           ? <FiChevronDown />
-          : <FiChevronUp />
+          : <FiChevronLeft />
         }
       </div>
       <div className={`children ${isExpanded ? 'open' : ''}`}>

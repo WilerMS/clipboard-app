@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useListContext } from '../../context/list.context'
 import Copier from './Copier'
 import Deleter from './Deleter'
 import  DragHandle  from './DragHandle'
@@ -33,6 +34,14 @@ const Container = styled.div`
 
 const ListItem = ({ provided, snapshot, item, editing }) => {
 
+  const { list, setList } = useListContext()
+
+  const handleDelete = (id) => {
+    const newList = list.filter(item => item.id !== id)
+    setList(newList)
+  }
+
+
   return (
     <Container
       ref={provided.innerRef}
@@ -48,7 +57,12 @@ const ListItem = ({ provided, snapshot, item, editing }) => {
       <DragHandle {...provided.dragHandleProps} />
       <TextBox editing={editing} id={item.id} />
       {!editing && <Copier item={item} />}
-      {editing && <Deleter id={item.id} />}
+      {editing && 
+        <Deleter 
+          id={item.id}
+          onDelete={handleDelete}
+        />
+      }
     </Container>
   )
 }

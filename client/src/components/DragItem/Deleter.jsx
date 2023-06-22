@@ -9,13 +9,10 @@ const Container = styled.div`
   justify-content: end;
 `
 
-const Deleter = ({ id }) => {
-
-  const { list, setList } = useListContext()
+const Deleter = ({ id, onDelete = () => { } }) => {
 
   const handleClick = () => {
-    const newList = list.filter(item => item.id !== id)
-
+    
     swal({
       title: "Are you sure?",
       text: "Once deleted, you won't be able to recover this text!",
@@ -39,7 +36,7 @@ const Deleter = ({ id }) => {
       ,
       dangerMode: true,
     })
-    .then((isOk) => isOk && setList(newList))
+    .then((isOk) => isOk && onDelete(id))
   }
 
   return (
