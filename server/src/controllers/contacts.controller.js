@@ -2,67 +2,107 @@ import { pool } from '../db/index.js'
 import { lwr } from '../utils/index.js'
 
 export const getContactsController = async (req, res) => {
-  const [contacts] = await pool.query('SELECT * FROM contacts WHERE user=?', [req.user])
+  try {
+    const [contacts] = await pool.query('SELECT * FROM contacts WHERE user=?', [
+      req.user
+    ])
 
-  const dataToSend = Object.values(contacts?.reduce((acc, curr) => ({
-    ...acc,
-    [curr.country]: {
-      ...acc[curr.country],
-      country: curr.country,
-      contacts: [
-        ...(acc[curr.country]?.contacts ?? []),
-        curr
-      ]
-    }
-  }), {}))
+    const dataToSend = Object.values(
+      contacts?.reduce(
+        (acc, curr) => ({
+          ...acc,
+          [curr.country]: {
+            ...acc[curr.country],
+            country: curr.country,
+            contacts: [...(acc[curr.country]?.contacts ?? []), curr]
+          }
+        }),
+        {}
+      )
+    )
 
-  const dataToSendWithKeys = dataToSend.map((data) => {
-    return {
-      ...data,
-      keys: [data.country, ...data.contacts.map(i => [i.name, `${i.number}`]).flat()]
-    }
-  })
+    const dataToSendWithKeys = dataToSend.map((data) => {
+      return {
+        ...data,
+        keys: [
+          data.country,
+          ...data.contacts.map((i) => [i.name, `${i.number}`]).flat()
+        ]
+      }
+    })
 
-  res.json(dataToSendWithKeys ?? [])
+    res.json(dataToSendWithKeys ?? [])
+  } catch (err) {
+    console.log({ err })
+    res.json({
+      error: true,
+      message: err.message
+    })
+  }
 }
 
 export const postContactsController = async (req, res) => {
   const { name, number, country } = req.body
 
-  const query = 'INSERT INTO contacts (name, number, country, user) values(?, ?, ?, ?)'
+  try {
+    const query =
+      'INSERT INTO contacts (name, number, country, user) values(?, ?, ?, ?)'
 
-  await pool.query(query, [lwr(name), number, lwr(country), req.user])
+    await pool.query(query, [lwr(name), number, lwr(country), req.user])
 
-  return res.json({
-    message: 'Added successfully'
-  })
+    return res.json({
+      message: 'Added successfully'
+    })
+  } catch (err) {
+    console.log({ err })
+    res.json({
+      error: true,
+      message: err.message
+    })
+  }
 }
 
 export const putContactController = async (req, res) => {
   const { id } = req.params
   const { name, number, country } = req.body
 
-  const query = 'UPDATE contacts SET ? WHERE ?'
+  try {
+    const query = 'UPDATE contacts SET ? WHERE ?'
 
-  const obj = {
-    ...!!name && { name },
-    ...!!number && { number },
-    ...!!country && { country }
+    const obj = {
+      ...(!!name && { name }),
+      ...(!!number && { number }),
+      ...(!!country && { country })
+    }
+
+    await pool.query(query, [obj, { id }])
+
+    return res.json({
+      message: 'Updated successfully'
+    })
+  } catch (err) {
+    console.log({ err })
+    res.json({
+      error: true,
+      message: err.message
+    })
   }
-
-  await pool.query(query, [obj, { id }])
-
-  return res.json({
-    message: 'Updated successfully'
-  })
 }
 
 export const deleteContactController = async (req, res) => {
   const { id } = req.params
 
-  await pool.query('DELETE FROM contacts WHERE ?', [{ id }])
+  try {
+    await pool.query('DELETE FROM contacts WHERE ?', [{ id }])
 
-  return res.json({
-    message: 'deleted successfully'
-  })
+    return res.json({
+      message: 'deleted successfully'
+    })
+  } catch (err) {
+    console.log({ err })
+    res.json({
+      error: true,
+      message: err.message
+    })
+  }
 }
