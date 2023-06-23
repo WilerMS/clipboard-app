@@ -31,7 +31,7 @@ const Container = styled.div`
     width: calc(100% - 20px);
     height: 100%;
     padding: 0 10px;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 10px;
   }
 
