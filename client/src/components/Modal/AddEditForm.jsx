@@ -29,6 +29,10 @@ const Form = styled.form`
       padding: 5px;
     }
   }
+
+  .error {
+    color: red;
+  }
 `
 
 const AddEditForm = ({
@@ -42,10 +46,21 @@ const AddEditForm = ({
 }) => {
 
   const [data, setData] = useState({ id, name, country, number })
+  const [error, setError] = useState(false)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit(data)
+
+    const isOk = !!data.country && !!data.name && !!data.number
+
+    if (isOk) {
+      onSubmit(data)
+      return
+    }
+
+    setError(true)
+
   }
 
   const handleChange = (value, key) => {
@@ -93,7 +108,10 @@ const AddEditForm = ({
             />
           </label>
 
-
+          {error && 
+          <div className="error">
+            Missing data
+          </div>}
           <Button type="submit">Send</Button>
         </Form>
       </div>
