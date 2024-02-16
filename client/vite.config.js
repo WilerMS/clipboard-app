@@ -10,5 +10,6 @@ export default defineConfig(() => {
       outDir: 'build',
     },
     plugins: [react()],
+    base: '/clipboard-app'
   };
 });
