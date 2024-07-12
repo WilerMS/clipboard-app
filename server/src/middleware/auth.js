@@ -1,5 +1,5 @@
 import jsonwebtoken from 'jsonwebtoken'
-import { pool } from './../db/index.js'
+import { turso } from './../db/index.js'
 import { JWT_SECRET } from './../config.js'
 
 const isAuthenticated = async (req, res, next) => {
@@ -9,7 +9,10 @@ const isAuthenticated = async (req, res, next) => {
 
     const verify = jsonwebtoken.verify(session, JWT_SECRET)
 
-    const [result] = await pool.query('SELECT id FROM users WHERE username=?', [verify.user])
+    const { rows: result } = await turso.execute({
+      sql: "SELECT id FROM users WHERE username=?",
+      args: [verify.user],
+    });
 
     if (!result.length) return next('Please login to access the data')
 

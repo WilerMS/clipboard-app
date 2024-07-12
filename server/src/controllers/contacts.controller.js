@@ -1,11 +1,12 @@
-import { pool } from '../db/index.js'
+import { turso } from '../db/index.js'
 import { lwr } from '../utils/index.js'
 
 export const getContactsController = async (req, res) => {
   try {
-    const [contacts] = await pool.query('SELECT * FROM contacts WHERE user=?', [
-      req.user
-    ])
+    const [contacts] = await turso.execute({
+      sql: "SELECT * FROM contacts WHERE user=?",
+      args: [req.user],
+    })
 
     const dataToSend = Object.values(
       contacts?.reduce(
@@ -48,7 +49,10 @@ export const postContactsController = async (req, res) => {
     const query =
       'INSERT INTO contacts (name, number, country, user) values(?, ?, ?, ?)'
 
-    await pool.query(query, [lwr(name), number, lwr(country), req.user])
+    await turso.execute({
+      sql: query,
+      args: [lwr(name), number, lwr(country), req.user],
+    })
 
     return res.json({
       message: 'Added successfully'
@@ -67,15 +71,23 @@ export const putContactController = async (req, res) => {
   const { name, number, country } = req.body
 
   try {
-    const query = 'UPDATE contacts SET ? WHERE ?'
 
-    const obj = {
-      ...(!!name && { name }),
-      ...(!!number && { number }),
-      ...(!!country && { country })
-    }
+    const nameStr = !!name ? 'name=?' : null 
+    const numberStr = !!number ? 'number=?' : null 
+    const countryStr = !!country ? 'country=?' : null 
 
-    await pool.query(query, [obj, { id }])
+    const sets = [nameStr, numberStr, countryStr].filter(Boolean)
+    const args =  [name, number, country].filter(Boolean)
+
+    const query = `
+      UPDATE contacts
+      SET ${sets.join(',')} 
+      WHERE id=?
+    `
+    await turso.execute({
+      sql: query,
+      args: [...args, id],
+    })
 
     return res.json({
       message: 'Updated successfully'
@@ -93,7 +105,10 @@ export const deleteContactController = async (req, res) => {
   const { id } = req.params
 
   try {
-    await pool.query('DELETE FROM contacts WHERE ?', [{ id }])
+    await turso.execute({
+      sql: "DELETE FROM contacts WHERE id=?",
+      args: [id],
+    })
 
     return res.json({
       message: 'deleted successfully'

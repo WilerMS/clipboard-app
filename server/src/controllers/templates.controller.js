@@ -1,7 +1,10 @@
-import { pool } from '../db/index.js'
+import { turso } from '../db/index.js'
 
 export const getTemplatesController = async (req, res) => {
-  const [result] = await pool.query('SELECT * FROM templates WHERE user=?', [req.user])
+  const { rows: result } = await turso.execute({
+    sql: "SELECT * FROM templates WHERE user=?",
+    args: [req.user],
+  })
   res.json(result)
 }
 
@@ -12,9 +15,18 @@ export const postTemplatesController = async (req, res) => {
   try {
     if (data.length > 100) throw new Error('Max template limit exceeded. Max number of templates: 40 ')
 
-    await pool.query('DELETE FROM templates WHERE user=?', [req.user])
-    await pool.query('INSERT INTO templates(title, position, user) VALUES ?', [data])
-    const [result] = await pool.query('SELECT * FROM templates WHERE user=?', req.user)
+    await turso.execute({
+      sql: "DELETE FROM templates WHERE user=?",
+      args: [req.user],
+    })
+    await turso.execute({
+      sql: "INSERT INTO templates(title, position, user) VALUES ?",
+      args: [data],
+    })
+    const { rows: result } = await turso.execute({
+      sql: "SELECT * FROM templates WHERE user=?",
+      args: [req.user],
+    });
     res.json(result)
   } catch (err) {
     res.json({
