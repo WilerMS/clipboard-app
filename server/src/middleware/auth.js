@@ -7,6 +7,7 @@ const isAuthenticated = async (req, res, next) => {
     const session = req.headers.authorization
     if (!session) return next('Please login to access the data')
 
+
     const verify = jsonwebtoken.verify(session, JWT_SECRET)
 
     const { rows: result } = await turso.execute({

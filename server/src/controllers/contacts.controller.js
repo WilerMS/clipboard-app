@@ -3,10 +3,11 @@ import { lwr } from '../utils/index.js'
 
 export const getContactsController = async (req, res) => {
   try {
-    const [contacts] = await turso.execute({
+    const { rows: contacts } = await turso.execute({
       sql: "SELECT * FROM contacts WHERE user=?",
       args: [req.user],
     })
+
 
     const dataToSend = Object.values(
       contacts?.reduce(

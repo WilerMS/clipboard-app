@@ -15,20 +15,32 @@ export const postTemplatesController = async (req, res) => {
   try {
     if (data.length > 100) throw new Error('Max template limit exceeded. Max number of templates: 40 ')
 
+    console.log({ user: req.user })
+
     await turso.execute({
       sql: "DELETE FROM templates WHERE user=?",
       args: [req.user],
     })
+
+    const valuesPlaceholder = data.map(() => "(?, ?, ?)").join(", ")
+    const flatData = data.flat()
+
+    console.log('HECHO: DELETE FROM templates WHERE user=?')
     await turso.execute({
-      sql: "INSERT INTO templates(title, position, user) VALUES ?",
-      args: [data],
+      sql: `INSERT INTO templates(title, position, user) VALUES ${valuesPlaceholder}`,
+      args: flatData,
     })
+
+    console.log('HECHO: INSERT INTO templates(title, position, user) VALUES ?')
     const { rows: result } = await turso.execute({
       sql: "SELECT * FROM templates WHERE user=?",
       args: [req.user],
     });
+
+    console.log('HECHO: SELECT * FROM templates WHERE user=?')
     res.json(result)
   } catch (err) {
+    console.log({ err })
     res.json({
       error: true,
       message: err.message
