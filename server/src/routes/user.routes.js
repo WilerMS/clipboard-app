@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import jsonwebtoken from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 import { turso } from './../db/index.js'
 import { JWT_SECRET } from './../config.js'
@@ -21,10 +22,7 @@ router.post('/login', async (req, res, next) => {
 
     if (!result.length) throw new UnauthorizedError('Username or password incorret')
 
-    const isPasswordCorrect = (() => {
-      const { password: dbPassword } = jsonwebtoken.verify(result[0].password, JWT_SECRET)
-      return dbPassword === password
-    })()
+    const isPasswordCorrect = await bcrypt.compare(password, result[0].password)
 
     if (!isPasswordCorrect) throw new UnauthorizedError('Username or password incorret')
 
@@ -47,11 +45,11 @@ router.post('/register', async (req, res) => {
   if (!username || !password) throw new ValidationError('Missing data...')
 
   try {
-    const token = jsonwebtoken.sign({ password }, JWT_SECRET)
+    const hashedPassword = await bcrypt.hash(password, 10)
     const query = 'INSERT INTO users(username, password) VALUES (?, ?)'
     await turso.execute({
       sql: query,
-      args: [username, token],
+      args: [username, hashedPassword],
     });
 
     return res.json({ message: 'User registration successfully' })
