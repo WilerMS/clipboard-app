@@ -20,6 +20,8 @@ router.post('/login', async (req, res, next) => {
       args: [username],
     });
 
+    console.log(result);
+
     if (!result.length) throw new UnauthorizedError('Username or password incorret')
 
     const isPasswordCorrect = await bcrypt.compare(password, result[0].password)
