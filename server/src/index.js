@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import { turso } from './db/index.js'
 
 import templatesRouter from './routes/templates.routes.js'
 import userRouter from './routes/user.routes.js'
