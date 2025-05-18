@@ -11,7 +11,7 @@ const router = Router()
 router.post('/login', async (req, res, next) => {
   try {
 
-    console.log('Entra al login)
+    console.log('Entra al login')
     const { username, password } = req.body
 
     console.log('usuario', username)
