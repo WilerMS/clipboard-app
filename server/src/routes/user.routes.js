@@ -35,6 +35,7 @@ router.post('/login', async (req, res, next) => {
     const token = jsonwebtoken.sign({ user: result[0].username }, JWT_SECRET)
     return res.json({ message: 'Login successfully', token })
   } catch (error) {
+    console.log(error)
     return res
       .status(400)
       .json({
