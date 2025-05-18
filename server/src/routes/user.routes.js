@@ -10,8 +10,6 @@ const router = Router()
 
 router.post('/login', async (req, res, next) => {
   try {
-
-    console.log('Entra al login')
     const { username, password } = req.body
 
     console.log('usuario', username)
@@ -19,6 +17,7 @@ router.post('/login', async (req, res, next) => {
     if (!username || !password) throw new UnauthorizedError('Please enter username and password')
 
     const query = 'SELECT username, password FROM users WHERE username=?'
+     console.log('Entra al login')
     const { rows: result } = await turso.execute({
       sql: query,
       args: [username],
