@@ -10,7 +10,11 @@ const router = Router()
 
 router.post('/login', async (req, res, next) => {
   try {
+
+    console.log('Entra al login)
     const { username, password } = req.body
+
+    console.log('usuario', username)
 
     if (!username || !password) throw new UnauthorizedError('Please enter username and password')
 
