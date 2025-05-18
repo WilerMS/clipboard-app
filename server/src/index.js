@@ -26,5 +26,13 @@ app.get('/', (req, res) => {
   res.send('Welcome')
 })
 
+const main = async () => {
+  const query = 'SELECT username, password FROM users'
+    const { rows: result } = await turso.execute(query);
+    console.log(result)
+}
+
+main()
+
 app.listen(PORT)
 console.log('Server on port ' + PORT)
