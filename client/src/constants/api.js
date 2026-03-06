@@ -1,1 +1,2 @@
-export const API_HOST = process.env.API_HOST || 'https://clipboard-app-production.up.railway.app'
+export const API_HOST =
+  process.env.API_HOST || "https://bulles-backend.up.railway.app";
