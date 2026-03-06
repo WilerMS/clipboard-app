@@ -16,7 +16,8 @@
     "react-modal": "^3.16.1",
     "styled-components": "^5.3.6",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "serve": "^14.2.4"
   },
   "scripts": {
     "dev": "vite",
@@ -26,7 +27,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "json": "json-server --watch db.json --port 5000"
+    "json": "json-server --watch db.json --port 5000",
+    "start": "serve -s build/"
   },
   "browserslist": {
     "production": [
